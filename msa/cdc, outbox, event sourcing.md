@@ -31,7 +31,7 @@ CDC에서는 Transaction Log를 계속 관찰하며 변경이 생겼을 때 Down
 
 DB에서 다음과 같은 Document를 가지고 있다고 가정해보자.
 
-``` json
+``` 
 {
     id: 1,
     amount: 50,
@@ -43,7 +43,7 @@ id는 1이고, 50개를 주문한 것이다.
 
 이제 30일이 지나고, Batch Job에 의해 지불이 되지 않은걸 보고 status를 overdue로 변경했다고 해보자.
 
-``` json
+``` 
 {
     id: 1,
     amount: 50,
@@ -53,7 +53,7 @@ id는 1이고, 50개를 주문한 것이다.
 
 또 그 뒤에 정상적으로 값을 지불하면 status를 paid 상태로 바꿔야 한다.
 
-``` json
+``` 
 {
     id: 1,
     amount: 50,
@@ -83,7 +83,7 @@ IssuedEvent를 저장하고, 미납 30일 후에는 OverdueEvent도 저장한다
 
 그럼 다음과 같은 Event들이 **모두** 저장된다.
 
-``` json
+``` 
 IssuedEvent {id:1, amount: 50, status:'issued'}
 
 OverdueEvent {id:1, amount: 50, status:'overdue'}
