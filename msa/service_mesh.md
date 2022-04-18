@@ -66,14 +66,24 @@ Envoy Proxy라는 이름의 Data Plane이 가장 많이 사용된다.
 Data Plane에서 사용되는 C++로 개발된 고성능 Proxy로, 다음 기능들을 수행한다.
 
 - Dynamic Service Discovery
+
 - Load Balancing
+
 - TLS Termination
+
 - HTTP/2와 gRPC 등 다양한 Proxy
+
 - Circuit Breaker
+
 - Health Check
+
 - Fault Injection
+
 - 다양한 Metrics
+
 - %기반 점진적 Update
+
+  > %기반 점진적 Update란, 일정 %의 트래픽을 다른 버전으로 넘겨서 조금씩 트래픽을 늘려가며 Product에서 테스트할 수 있는 기능이다.
 
 ### VS API Gatway
 
