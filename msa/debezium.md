@@ -64,7 +64,7 @@ Kafka Connect는 세 개의 Component로 구성된다.
 
 중심의 Kafka Connect Cluster, 외부 Source Database, sink될 외부 Database가 있다.
 
-위 그림에서 볼 수 있다싶이 Kafka Connect는 두 개의 다음 두 개의 Connector를 가진다.
+위 그림에서 볼 수 있다싶이 Kafka Connect는 두 개의 Connector를 가진다.
 
 - **Source Connector:** 외부 Source Database로부터 메세지를 fetch해온다.
 - **Sink Connector:** 외부 / Downstream에게 메세지를 전달한다.
