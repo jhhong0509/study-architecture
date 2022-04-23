@@ -94,22 +94,3 @@ JDBC Sink Connector는 여러 Distributed Consumer들에게 메세지를 분배�
 JDBC Connector는 Delete된 Record를 발행하지 않지만, CDC Connector는 발행한다.
 
 그리고 JDBC Connector는 특정 간격으로 DB에 쿼리하지만, CDC Connector는 DB에서 발생하는 변경 사항을 즉시 기록 / 전송한다.
-
-## Architecture
-
-경우에 따라 다르겠지만, 보통 Kafka Connect를 사용한다.
-
-Kafka Connect는 Kafka Broker와 별도로 동작하는 개별적인 서비스이다.
-
-Apache Kafka나 다른 시스템에 데이터를 전달해줄 수 있다.
-
-![img](./images/debezium_architecture.png)
-
-먼저 왼쪽의 MySQL은 복제하고 싶은 데이터가 있는 Source Database이고, 오른쪽은 Target DataBase이다.
-
-Kafka Connect는 Transaction Log를 파싱 및 번역해서 Kafka Topic에 발행한다.
-
-Kafka는 받은 메세지를 해당 System에 발행함을 보장하기 위해 Message Broker처럼 동작한다.
-
-마지막으로 Kafka를 Polling하고, 이를 Target Database에 복제하는 Kafka Connector가 있다.
-
