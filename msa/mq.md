@@ -169,7 +169,7 @@ Kafka는 기본적으로 **Pub/Sub 모델의 MQ**이다.
 
 <br>
 
-#### 메세지를 읽지 않는다
+#### 메세지를 잃지 않는다
 
 메세지가 중복되더라도 **데이터를 잃으면 안된다.**
 <br>
@@ -377,4 +377,34 @@ RabbitMQ는 **MSA 사이의 Message Broker에 적합**하다.
 Kafka는 **실시간 처리**에 좋다.
 
 RabbitMQ가 더 성숙하다 라는 의견도 있지만, Kafka가 2011년에 출시했고 RabbitMQ가 2007년에 출시했으니 큰 차이는 없다.
+
+## Kafka Streams
+
+### 소개
+
+기존의 Kafka에서 Consumer로 처리하던걸 더 빠르고 안전하게 실시간으로 처리할 수 있게 해주는 라이브러리이다.
+
+Kafka와 완벽하게 호환되고, **데이터 유실과 중복처리가 없이 1번 처리를 보장**한다.
+
+Rolling Restart를 지원하기 때문에 실제 서비스의 Traffic을 처리하던 도중에도 Update된 Application을 검증하기 쉽다.
+
+### 기존 시스템과의 차이
+
+![img](./images/without_stream_kafka.png)
+
+원래는 위와 같이 **데이터를 DB같은 곳에 저장한 후, 필요할 때 Application이 Query를 실행하거나 분석하는 등 Batch 형태**를 띄었다.
+
+하지만 기존의 Batch 방식에서 좀 더 실시간이고, 좀 더 지속적인 방향으로 변하게 되었다.
+
+Stream에 발생한 Event에 대해 즉시 Application이 반응하고, 이걸로 통계를 낸다거나 저장하는 등 다양하게 처리할 수 있다.
+
+![img](./images/with_stream_kafka.png)
+
+
+
+### 특징
+
+- Scheduling하지 않고 Kafka Streams만 있어도 Scheduling할 수 있다.
+- rocksDB를 자체적인 Local Data Store로 사용하고, LocalDB의 변경사항은 Kafka 변경 로그에 저장된다.
+- 장애 감지, 노드 조율, 파티션 할당 등을 위한 Master가 존재하지 않기 때문에 Kafka 내부적인 통신이 필요없다.
 
